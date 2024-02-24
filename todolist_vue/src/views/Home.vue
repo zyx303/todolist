@@ -144,7 +144,7 @@
     const toggleTodos = async () => {
     todos.value = todos.value.map(todo => {
         if (todo.selected) {
-        return { ...todo, completed: todo.completed === 0 ? 1 : 0 }
+        return { ...todo, completed: todo.completed === 0 ? 1 : 0, selected: false}
         } else {
         return todo
         }
