@@ -18,12 +18,15 @@
                     <el-input style="width: 450px" v-model="newTodo" placeholder="What needs to be done?" @keyup.enter="addTodo"></el-input>
                     <div v-if="todos.length === 0">Loading...</div>
                     <el-row v-for="(todo, index) in filteredTodos" :key="index">
-                        <el-col :span="18">
+                        <el-col :span="12">
                             <el-checkbox v-model="todo.selected">{{ todo.text }}</el-checkbox>
                         </el-col>   
                         <!-- <el-col :span="6">
                             <el-button class="button" @click="updateById(todo.id)">修改</el-button>
                         </el-col> -->
+                        <el-col :span="6">
+                            <div>{{ formatDate(todo.createTime) }}</div>
+                        </el-col>
                         <el-col :span="6">
                             <el-button class="button" @click="removeTodo(todo.id)">删除</el-button>
                         </el-col>
@@ -155,6 +158,11 @@
         console.error('Error updating todos:', error)
         }
     }    
+    //日期格式转换
+    const formatDate = computed(() => (dateString) => {
+      const date = new Date(dateString);
+      return `${date.getMonth() + 1}-${date.getDate()}`.padStart(2, '0');
+    });
   </script>
   <style>
     .button{
