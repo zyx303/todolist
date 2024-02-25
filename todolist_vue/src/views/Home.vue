@@ -56,6 +56,7 @@
     })
     const handleSelect = (index) => {
         filter.value = index
+        todos.value = todos.value.map(todo => ({ ...todo, selected: false }))
     }
 //得到todos
     onMounted(async () => {
